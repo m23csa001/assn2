@@ -30,9 +30,33 @@ def tanh(x):
 #     plt.show()
 # plot_activation_functions()
 
-def print_activation_outputs(random_values):
-    print("ReLU Output:", relu(random_values))
-    print("Leaky ReLU Output:", leaky_relu(random_values))
-    print("Tanh Output:", tanh(random_values))
+def print_activation_outputs_and_plot(random_values):
+      outputs = {
+       "ReLU": relu(random_values),
+       "Leaky ReLU": leaky_relu(random_values),
+       "Tanh": tanh(random_values),
+   }
+  
+      for name, output in outputs.items():
+       print(f"{name} Output:", output)
+
+
+      plt.figure(figsize=(12, 4))
+      for i, (name, output) in enumerate(outputs.items(), start=1):
+       plt.subplot(1, len(outputs), i)
+       plt.stem(random_values, output)
+       plt.title(name + " Output")
+       plt.xlabel("Input")
+       plt.ylabel("Output")
+       plt.grid(True)
+
+
+      plt.tight_layout()
+      plt.show()
+
+
 random_values = np.array([-3.5, -1.2, 0, 2.8, -4.1, 1.5, -0.7, 3.2, -2.4, 4.6])
-print_activation_outputs(random_values)
+
+
+print_activation_outputs_and_plot(random_values)
+
